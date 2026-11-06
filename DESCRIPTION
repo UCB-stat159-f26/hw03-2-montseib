@@ -1,0 +1,16 @@
+Package: tenniscareers.r
+Title: Visualize a Tennis Players' Career  
+Version: 1.0.0
+Author: Montserrat Ibarra Reyes
+Description:  This is a fun package that outputs a scatter plot of a tennis 
+  player's matches throughout their career time. Given a valid player's first 
+  and last name, one of the two functions scrapes tennisabstract.com to create 
+  and clean a dataframe. Each row of the dataframe is a match they played, and 
+  its columns represent the matches' date, opponent's name, opponent's date of 
+  birth, and whether the player won or lost the match. The second function 
+  uses this data table to create a scatter plot. Each point represents a 
+  match, the x-axis is the timeline of the player's career, and the y-axis 
+  is the age differnece between the player and their opponent. 
+Maintainer: Montserrat Ibarra Reyes <montserratib13@gmail.com>
+License: MIT
+
