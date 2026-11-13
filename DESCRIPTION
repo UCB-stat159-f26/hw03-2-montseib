@@ -11,6 +11,6 @@ Description: This is a fun package that outputs a scatter plot of a tennis
   uses this data table to create a scatter plot. Each point represents a 
   match, the x-axis is the timeline of the player's career, and the y-axis 
   is the age differnece between the player and their opponent. 
-Maintainer: Montserrat Ibarra Reyes <montserratib13@gmail.com>
+Maintainer: Montserrat Ibarra Reyes <montserrat_ibarra@berkeley.edu>
 License: MIT
 Config/roxygen2/version: 8.1.1
