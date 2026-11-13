@@ -1,9 +1,10 @@
 extract_js_array <- function(js_text, var_name) {
-  pattern <- sprintf("(?s)var %s\\s*=\\s*(\\[\\[.*?\\]\\])", var_name)
-  hit <- regmatches(js_text, regexpr(pattern, js_text, perl = TRUE))
-  if (length(hit) == 0) return(NULL)
-  json <- sub("^var \\w+\\s*=\\s*", "", hit)
-  jsonlite::fromJSON(json, simplifyVector = FALSE)
+  start <- regexpr(sprintf("var\\s+%s\\s*=\\s*", var_name), js_text)
+  if (start == -1) return(NULL)
+  body <- substring(js_text, start + attr(start, "match.length"))
+  end <- regexpr("];", body, fixed = TRUE)
+  if (end != -1) body <- substr(body, 1, end)
+  jsonlite::fromJSON(body, simplifyVector = FALSE)
 }
 
 parse_match_rows <- function(js_text) {

@@ -19,23 +19,26 @@ career_js_url <- function(player_key) {
   sprintf("https://www.tennisabstract.com/jsmatches/%sCareer.js", player_key)
 }
 
-# Returns the response body as text, or NULL if the request is not a 200.
 fetch_text <- function(url) {
   resp <- httr2::request(url) |>
-    httr2::req_user_agent("tennisage R package") |>
+    httr2::req_user_agent("Mozilla/5.0") |>
     httr2::req_error(is_error = function(resp) FALSE) |>
     httr2::req_perform()
   if (httr2::resp_status(resp) != 200) return(NULL)
   httr2::resp_body_string(resp)
 }
 
-# Tries the women's page, then the men's; returns the first page with a DOB.
-find_player_page <- function(player_key) {
+has_dob <- function(js_text) grepl("var dob\\s*=", js_text)
+
+# Looks for the date of birth in the career JS first, then on the player pages.
+find_player_dob <- function(player_key, career_js, player_name) {
+  if (has_dob(career_js)) return(parse_player_dob(career_js))
   for (tour in c("wta", "atp")) {
     page <- fetch_text(player_page_url(player_key, tour))
-    if (!is.null(page) && grepl("var dob\\s*=", page)) return(page)
+    if (!is.null(page) && has_dob(page)) return(parse_player_dob(page))
   }
-  NULL
+  stop(sprintf("Found matches for '%s' but could not find the player's date of birth.",
+               player_name), call. = FALSE)
 }
 
 stop_player_not_found <- function(player_name) {
