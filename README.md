@@ -13,7 +13,7 @@ Install the development version from GitHub:
 devtools::install_github("montseib/hw03-2-montseib")
 
 # or using pak
-pak::pak("username/yourpackage")
+pak::pak("montseib/hw03-2-montseib")
 
 ```
 
@@ -24,7 +24,7 @@ The package has two public functions:
 
 | Function | Purpose |
 |----------|---------|
-| `matches(player_name)` | Downloads and cleans a player's career matches, returning a data frame |
+| `get_player_career(player_name)` | Downloads and cleans a player's career matches, returning a data frame |
 | `plot_age_gap(career_data)` | Takes that data frame and returns a scatter plot |
 
 ```r
@@ -51,7 +51,7 @@ get_player_career("GastonSanchez")
 
 ## The data
 
-`matches()` returns one row per match, sorted by date, with columns:
+`get_player_career()` returns one row per match, sorted by date, with columns:
 
 | Column | Description |
 |--------|-------------|
