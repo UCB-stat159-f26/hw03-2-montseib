@@ -1,7 +1,7 @@
 #' Plot player age vs. age gap with the opponent
 #'
 #' @param career_data Data frame returned by [get_player_career()].
-#' @return A ggplot object.
+#' @return A ggplot object. Specifically, a scatter plot of 
 #' @importFrom rlang .data
 #' @export
 plot_age_gap <- function(career_data) {
@@ -11,7 +11,7 @@ plot_age_gap <- function(career_data) {
                   ggplot2::aes(.data$player_age, .data$age_diff, color = .data$result)) +
     ggplot2::geom_hline(yintercept = 0, color = "grey60") +
     ggplot2::geom_point(alpha = 0.8, size = 2) +
-    ggplot2::scale_color_manual(values = c(W = "#1b1b1b", L = "#d62728"),
+    ggplot2::scale_color_manual(values = c(W = "#98FB98", L = "#fa8072"),
                                 labels = c(W = "Win", L = "Loss")) +
     ggplot2::labs(x = "Player's age", color = NULL,
                   y = "Player's age minus opponent's age (years)") +
