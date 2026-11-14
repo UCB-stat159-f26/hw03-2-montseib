@@ -108,3 +108,30 @@ All data comes from [Tennis Abstract](https://www.tennisabstract.com/). This
 package is not affiliated with that site.
 
 ## Personal Reflection
+
+I used to be so intimidated by R packages because I never gave myself the time 
+to practice with them or even study them. However, building this package 
+taught me how the pieces of an R package  fit together: public functions that 
+users call, private helper functions that do the small jobs, and a `tests/` 
+folder that checks the helpers. Splitting the work into small functions made the 
+code easier to read and way easier to debug because I could test each step on 
+its own.
+
+After I completed the public functions and their tests, I tried using the functions 
+in my R console, but the JavasScript download kept failing. My first version 
+fetched the player's web page before the career file and reported "player not 
+found" when the page didn't contain what I expected, which made it look like the 
+JS link was broken. I solved this by testing each URL separately and checking 
+its status code, then reorganizing the code so the career JS file is downloaded 
+first and each failure produces a specific error message.
+
+Moreover, I learned why automated tests shouldn't hit a live website. By testing
+the parsing and age calculations on small mock JavaScript snippets, I could
+check my code quickly without depending on an internet connection or on the
+site being available.
+
+Overall, I enjoyed working on building this fun R package, it really helped me 
+get familiarized with how to document functions using Roxygen (which automatically
+crate the .Rd files in the `man` folder), how to create step-by-step private functions, 
+and how to use devtools to check that the package works. 
+
